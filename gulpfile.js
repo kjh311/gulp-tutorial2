@@ -1,11 +1,13 @@
-// tutorial:
+// tutorials:
 // https://css-tricks.com/gulp-for-beginners/
 // http://stackoverflow.com/questions/31163754/browser-sync-does-not-refresh-page-after-changes-with-gulp
+// http://stackoverflow.com/questions/21679844/livereload-of-index-html-with-gulp
 
-var gulp = require('gulp');
-var sass = require('gulp-ruby-sass');
-var browserSync = require('browser-sync').create();
-var reload      = browserSync.reload;
+
+var gulp          = require('gulp');
+var sass          = require('gulp-ruby-sass');
+var browserSync   = require('browser-sync').create();
+var reload        = browserSync.reload;
 
 gulp.task('sass', function(){
     sass('scss/styles.scss')
@@ -17,6 +19,7 @@ gulp.task('sass', function(){
 
 gulp.task('watch', function(){
   gulp.watch('scss/styles.scss', ['sass']);
+  // reloads browser
   gulp.watch("*.html").on("change", reload);
 });
 
@@ -34,25 +37,6 @@ gulp.task('browserSync', function() {
     },
   })
 })
-
-
-
-
-
-// Save a reference to the `reload` method
-
-// Watch scss AND html files, doing different things with each.
-// gulp.task('serve', function () {
-
-//     // Serve files from the root of this project
-//     browserSync.init({
-//         server: {
-//             baseDir: "./"
-//         }
-//     });
-
-//     gulp.watch("*.html").on("change", reload);
-// });
 
 
 
