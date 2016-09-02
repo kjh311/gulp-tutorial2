@@ -8,10 +8,12 @@ var gulp          = require('gulp');
 var sass          = require('gulp-ruby-sass');
 var browserSync   = require('browser-sync').create();
 var reload        = browserSync.reload;
+var cleanCSS      = require('gulp-clean-css');
 
 gulp.task('sass', function(){
     sass('scss/styles.scss')
         .on('error', sass.logError)
+        .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('css'))
         // injects changes into browser when change of scss:
         .pipe(browserSync.stream({match: '**/*.css'}));
