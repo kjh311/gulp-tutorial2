@@ -3,6 +3,7 @@
 * Watches SCSS, LESS, or  STYLUS files and auto compiles to CSS.
 * Watches for changes in HTML, SCSS, LESS, and STYLUS files and auto reloads the browser.
 * Minifies CSS file.
+* Finds JS errors.
 
 #USES:
 
@@ -13,3 +14,6 @@
 * Gulp-Stylus
 * Path
 * Gulp-Less
+* Jshint-Stylish
+* Gulp-Jshint
+* Jshint

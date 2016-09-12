@@ -12,12 +12,14 @@ var cleanCSS      = require('gulp-clean-css');
 var stylus        = require('gulp-stylus');
 var less          = require('gulp-less');
 var path          = require('path');
+var jshint        = require('gulp-jshint');
 
 // Uncomment for stylus or less
 gulp.task('watch', function(){
   gulp.watch('stylesheets/scss/*.scss', ['sass']);
   // gulp.watch('stylesheets/stylus/*.styl', ['stylus']);
   // gulp.watch('stylesheets/less/*.less', ['less']);
+  gulp.watch('*.js', ['jshint']);
   // reloads browser
   gulp.watch("*.html").on("change", reload);
 });
@@ -50,6 +52,12 @@ gulp.task('stylus', function(){
         .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
+gulp.task('jshint', function() {
+  return gulp.src('*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
+});
+
 browserSync.init({
     // injects changes instead of browser reload
     injectChanges: true,
@@ -62,8 +70,8 @@ gulp.task('browserSync', function() {
     server: {
       baseDir: './'
     },
-  })
-})
+  });
+});
 
 
 
