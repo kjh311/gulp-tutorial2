@@ -13,7 +13,7 @@ var stylus        = require('gulp-stylus');
 
 
 gulp.task('sass', function(){
-    sass('scss/styles.scss')
+    sass('stylesheets/scss/styles.scss')
         .on('error', sass.logError)
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('css'))
@@ -22,7 +22,7 @@ gulp.task('sass', function(){
 });
 
 gulp.task('stylus', function(){
-    return gulp.src('stylus/stylus.styl')
+    return gulp.src('stylesheets/stylus/stylus.styl')
         .pipe(stylus())
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('css'))
@@ -31,8 +31,8 @@ gulp.task('stylus', function(){
 });
 
 gulp.task('watch', function(){
-  gulp.watch('scss/styles.scss', ['sass']);
-  gulp.watch('stylus/stylus.styl', ['stylus']);
+  gulp.watch('stylesheets/scss/styles.scss', ['sass']);
+  gulp.watch('stylesheets/stylus/stylus.styl', ['stylus']);
   // reloads browser
   gulp.watch("*.html").on("change", reload);
 });
