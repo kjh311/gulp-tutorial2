@@ -10,10 +10,11 @@ var browserSync   = require('browser-sync').create();
 var reload        = browserSync.reload;
 var cleanCSS      = require('gulp-clean-css');
 var stylus        = require('gulp-stylus');
+// var less          = require('gulp-less');
 
 
 gulp.task('sass', function(){
-    sass('stylesheets/scss/styles.scss')
+    sass('stylesheets/scss/*.scss')
         .on('error', sass.logError)
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('stylesheets/css'))
@@ -21,8 +22,16 @@ gulp.task('sass', function(){
         .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
+gulp.task('less', function() {
+   less('stylesheets/less/*.less')
+      .pipe(less())
+      .pipe(cleanCSS({compatibility: 'ie8'}))
+      .pipe(gulp.dest('stylesheets/css'))
+      .pipe(browserSync.stream({match: '**/*.css'}));
+});
+
 gulp.task('stylus', function(){
-    return gulp.src('stylesheets/stylus/stylus.styl')
+    return gulp.src('stylesheets/stylus/*.styl')
         .pipe(stylus())
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('stylesheets/css'))
@@ -31,8 +40,9 @@ gulp.task('stylus', function(){
 });
 
 gulp.task('watch', function(){
-  gulp.watch('stylesheets/scss/styles.scss', ['sass']);
-  // gulp.watch('stylesheets/stylus/stylus.styl', ['stylus']);
+  gulp.watch('stylesheets/scss/*.scss', ['sass']);
+  // gulp.watch('stylesheets/stylus/*.styl', ['stylus']);
+  // gulp.watch('stylesheets/stylus/*.less', ['less']);
   // reloads browser
   gulp.watch("*.html").on("change", reload);
 });
