@@ -4,7 +4,8 @@
 * Watches for changes in HTML, SCSS, LESS, and STYLUS files and auto reloads the browser.
 * Minifies CSS file.
 
-USES:
+#USES:
+
 * Gulp
 * Browser-Sync
 * Gulp-Ruby-Sass
