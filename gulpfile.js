@@ -16,7 +16,7 @@ gulp.task('sass', function(){
     sass('stylesheets/scss/styles.scss')
         .on('error', sass.logError)
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('css'))
+        .pipe(gulp.dest('stylesheets/css'))
         // injects changes into browser when change of scss:
         .pipe(browserSync.stream({match: '**/*.css'}));
 });
@@ -25,14 +25,14 @@ gulp.task('stylus', function(){
     return gulp.src('stylesheets/stylus/stylus.styl')
         .pipe(stylus())
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('css'))
+        .pipe(gulp.dest('stylesheets/css'))
         // injects changes into browser when change of stylus:
         .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 gulp.task('watch', function(){
   gulp.watch('stylesheets/scss/styles.scss', ['sass']);
-  gulp.watch('stylesheets/stylus/stylus.styl', ['stylus']);
+  // gulp.watch('stylesheets/stylus/stylus.styl', ['stylus']);
   // reloads browser
   gulp.watch("*.html").on("change", reload);
 });
