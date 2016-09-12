@@ -13,6 +13,12 @@ var stylus        = require('gulp-stylus');
 var less          = require('gulp-less');
 var path          = require('path');
 var jshint        = require('gulp-jshint');
+var concat        = require('gulp-concat');
+var rename        = require('gulp-rename');
+var uglify        = require('gulp-uglify');
+
+var jsFiles = 'js/*.js',
+    jsDest = '.';
 
 // Uncomment for stylus or less
 gulp.task('watch', function(){
@@ -20,6 +26,7 @@ gulp.task('watch', function(){
   // gulp.watch('stylesheets/stylus/*.styl', ['stylus']);
   // gulp.watch('stylesheets/less/*.less', ['less']);
   gulp.watch('*.js', ['jshint']);
+  gulp.watch('js/*.js', ['scripts']);
   // reloads browser
   gulp.watch("*.html").on("change", reload);
 });
@@ -56,6 +63,15 @@ gulp.task('jshint', function() {
   return gulp.src('*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('scripts', function() {
+    return gulp.src(jsFiles)
+        .pipe(concat('compiledJS/concat.js'))
+        .pipe(gulp.dest(jsDest))
+        .pipe(rename('app.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(jsDest));
 });
 
 browserSync.init({
