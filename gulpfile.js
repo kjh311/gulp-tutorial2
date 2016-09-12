@@ -10,8 +10,17 @@ var browserSync   = require('browser-sync').create();
 var reload        = browserSync.reload;
 var cleanCSS      = require('gulp-clean-css');
 var stylus        = require('gulp-stylus');
-// var less          = require('gulp-less');
+var less          = require('gulp-less');
+var path          = require('path');
 
+// Uncomment for stylus or less
+gulp.task('watch', function(){
+  gulp.watch('stylesheets/scss/*.scss', ['sass']);
+  // gulp.watch('stylesheets/stylus/*.styl', ['stylus']);
+  // gulp.watch('stylesheets/less/*.less', ['less']);
+  // reloads browser
+  gulp.watch("*.html").on("change", reload);
+});
 
 gulp.task('sass', function(){
     sass('stylesheets/scss/*.scss')
@@ -23,8 +32,10 @@ gulp.task('sass', function(){
 });
 
 gulp.task('less', function() {
-   less('stylesheets/less/*.less')
-      .pipe(less())
+   return gulp.src('stylesheets/less/*.less')
+      .pipe(less({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
       .pipe(cleanCSS({compatibility: 'ie8'}))
       .pipe(gulp.dest('stylesheets/css'))
       .pipe(browserSync.stream({match: '**/*.css'}));
@@ -37,14 +48,6 @@ gulp.task('stylus', function(){
         .pipe(gulp.dest('stylesheets/css'))
         // injects changes into browser when change of stylus:
         .pipe(browserSync.stream({match: '**/*.css'}));
-});
-
-gulp.task('watch', function(){
-  gulp.watch('stylesheets/scss/*.scss', ['sass']);
-  // gulp.watch('stylesheets/stylus/*.styl', ['stylus']);
-  // gulp.watch('stylesheets/stylus/*.less', ['less']);
-  // reloads browser
-  gulp.watch("*.html").on("change", reload);
 });
 
 browserSync.init({
