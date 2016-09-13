@@ -20,6 +20,7 @@ var rename        = require('gulp-rename');
 var uglify        = require('gulp-uglify');
 var jquery        = require('jquery');
 var browserify    = require('browserify');
+var imagemin      = require('gulp-imagemin');
 
 
 var jsFiles = 'client/js/*.js',
@@ -32,6 +33,7 @@ gulp.task('watch', function(){
   // gulp.watch('client/stylesheets/less/*.less', ['less']);
   gulp.watch('*.js', ['jshint']);
   gulp.watch('client/js/*.js', ['scripts']);
+  gulp.watch('client/images/*', ['image']);
   // reloads browser
   gulp.watch("*.html").on("change", reload);
   gulp.watch("*.js").on("change", reload);
@@ -78,6 +80,13 @@ gulp.task('scripts', function() {
         .pipe(rename('app.js'))
         .pipe(uglify())
         .pipe(gulp.dest(jsDest));
+});
+
+// COMPRESS IMAGES:
+gulp.task('image', function() {
+    gulp.src('client/images/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('build/images'))
 });
 
 browserSync.init({
