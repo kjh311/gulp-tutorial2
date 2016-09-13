@@ -1,5 +1,5 @@
 // var $ = require('jquery');
 
 
-    alert( "ready!" );
+    // alert( "ready!" );
 

@@ -10,5 +10,5 @@ console.log("I don't know what I'm doing half the time");
 // var $ = require('jquery');
 
 
-    alert( "ready!" );
+    // alert( "ready!" );
 

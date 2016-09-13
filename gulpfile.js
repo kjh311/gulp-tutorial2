@@ -34,6 +34,7 @@ gulp.task('watch', function(){
   gulp.watch('js/*.js', ['scripts']);
   // reloads browser
   gulp.watch("*.html").on("change", reload);
+  gulp.watch("*.js").on("change", reload);
 });
 
 gulp.task('sass', function(){
