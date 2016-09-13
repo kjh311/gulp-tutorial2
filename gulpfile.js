@@ -22,45 +22,45 @@ var jquery        = require('jquery');
 var browserify    = require('browserify');
 
 
-var jsFiles = 'js/*.js',
+var jsFiles = 'client/js/*.js',
     jsDest = '.';
 
 // Uncomment for stylus or less
 gulp.task('watch', function(){
-  gulp.watch('stylesheets/scss/*.scss', ['sass']);
-  // gulp.watch('stylesheets/stylus/*.styl', ['stylus']);
-  // gulp.watch('stylesheets/less/*.less', ['less']);
+  gulp.watch('client/stylesheets/scss/*.scss', ['sass']);
+  gulp.watch('client/stylesheets/stylus/*.styl', ['stylus']);
+  gulp.watch('client/stylesheets/less/*.less', ['less']);
   gulp.watch('*.js', ['jshint']);
-  gulp.watch('js/*.js', ['scripts']);
+  gulp.watch('client/js/*.js', ['scripts']);
   // reloads browser
   gulp.watch("*.html").on("change", reload);
   gulp.watch("*.js").on("change", reload);
 });
 
 gulp.task('sass', function(){
-    sass('stylesheets/scss/*.scss')
+    sass('client/stylesheets/scss/*.scss')
         .on('error', sass.logError)
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('stylesheets/css'))
+        .pipe(gulp.dest('client/stylesheets/css'))
         // injects changes into browser when change of scss:
         .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 gulp.task('less', function() {
-   return gulp.src('stylesheets/less/*.less')
+   return gulp.src('client/stylesheets/less/*.less')
       .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
       .pipe(cleanCSS({compatibility: 'ie8'}))
-      .pipe(gulp.dest('stylesheets/css'))
+      .pipe(gulp.dest('client/stylesheets/css'))
       .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 gulp.task('stylus', function(){
-    return gulp.src('stylesheets/stylus/*.styl')
+    return gulp.src('client/stylesheets/stylus/*.styl')
         .pipe(stylus())
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('stylesheets/css'))
+        .pipe(gulp.dest('client/stylesheets/css'))
         // injects changes into browser when change of stylus:
         .pipe(browserSync.stream({match: '**/*.css'}));
 });
@@ -73,7 +73,7 @@ gulp.task('jshint', function() {
 
 gulp.task('scripts', function() {
     return gulp.src(jsFiles)
-        .pipe(concat('compiledJS/concat.js'))
+        .pipe(concat('client/compiledJS/concat.js'))
         .pipe(gulp.dest(jsDest))
         .pipe(rename('app.js'))
         .pipe(uglify())
