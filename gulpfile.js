@@ -28,8 +28,8 @@ var jsFiles = 'client/js/*.js',
 // Uncomment for stylus or less
 gulp.task('watch', function(){
   gulp.watch('client/stylesheets/scss/*.scss', ['sass']);
-  gulp.watch('client/stylesheets/stylus/*.styl', ['stylus']);
-  gulp.watch('client/stylesheets/less/*.less', ['less']);
+  // gulp.watch('client/stylesheets/stylus/*.styl', ['stylus']);
+  // gulp.watch('client/stylesheets/less/*.less', ['less']);
   gulp.watch('*.js', ['jshint']);
   gulp.watch('client/js/*.js', ['scripts']);
   // reloads browser
