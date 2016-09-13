@@ -3,6 +3,8 @@
 // http://stackoverflow.com/questions/31163754/browser-sync-does-not-refresh-page-after-changes-with-gulp
 // http://stackoverflow.com/questions/21679844/livereload-of-index-html-with-gulp
 // https://www.npmjs.com/package/gulp-stylus
+// http://codehangar.io/concatenate-and-minify-javascript-with-gulp/
+// https://quickleft.com/blog/setting-up-a-clientside-javascript-project-with-gulp-and-browserify/
 
 var gulp          = require('gulp');
 var sass          = require('gulp-ruby-sass');
@@ -16,6 +18,9 @@ var jshint        = require('gulp-jshint');
 var concat        = require('gulp-concat');
 var rename        = require('gulp-rename');
 var uglify        = require('gulp-uglify');
+var jquery        = require('jquery');
+var browserify    = require('browserify');
+
 
 var jsFiles = 'js/*.js',
     jsDest = '.';

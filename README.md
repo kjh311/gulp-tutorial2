@@ -1,11 +1,11 @@
-#Creating a Gulpfile for repetitive tasks.
+#Creating a Personalized Gulpfile for my repetitive tasks.
 
 * Watches SCSS, LESS, or  STYLUS files and auto compiles to CSS.
 * Watches for changes in HTML, SCSS, LESS, and STYLUS files and auto reloads the browser.
-* Minifies CSS file.
-* Finds JS errors.
-* Concatonates multiple JS files into 1 file.
-* Minifies JS file.
+* Minifies CSS file using Gulp-Clean-Css.
+* Finds JS errors using Gulp-Jshint.
+* Concatonates multiple JS files into 1 file using Gulp-Concat.
+* Minifies JS file using Gulp-Jshint.
 
 #USES:
 

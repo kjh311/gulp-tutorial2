@@ -5,6 +5,10 @@ console.log('what the fuck ?');
 
 console.log("I don't know what I'm doing half the time");
 
-window.onload = function() {
-  alert("Hello! I am an alert box!!");
-};
+
+
+// var $ = require('jquery');
+
+
+    alert( "ready!" );
+
