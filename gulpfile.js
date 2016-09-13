@@ -6,6 +6,7 @@
 // http://codehangar.io/concatenate-and-minify-javascript-with-gulp/
 // https://quickleft.com/blog/setting-up-a-clientside-javascript-project-with-gulp-and-browserify/
 
+// DEPENDANCIES:
 var gulp          = require('gulp');
 var sass          = require('gulp-ruby-sass');
 var browserSync   = require('browser-sync').create();
@@ -23,9 +24,8 @@ var browserify    = require('browserify');
 var imagemin      = require('gulp-imagemin');
 
 
-var jsFiles = 'client/js/*.js',
-    jsDest = '.';
 
+// GENERAL TASKS:
 // Uncomment for stylus or less
 gulp.task('watch', function(){
   gulp.watch('client/stylesheets/scss/*.scss', ['sass']);
@@ -39,6 +39,7 @@ gulp.task('watch', function(){
   gulp.watch("*.js").on("change", reload);
 });
 
+// SASS
 gulp.task('sass', function(){
     sass('client/stylesheets/scss/*.scss')
         .on('error', sass.logError)
@@ -48,6 +49,7 @@ gulp.task('sass', function(){
         .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
+// LESS
 gulp.task('less', function() {
    return gulp.src('client/stylesheets/less/*.less')
       .pipe(less({
@@ -58,6 +60,7 @@ gulp.task('less', function() {
       .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
+// STYLUS
 gulp.task('stylus', function(){
     return gulp.src('client/stylesheets/stylus/*.styl')
         .pipe(stylus())
@@ -67,11 +70,17 @@ gulp.task('stylus', function(){
         .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
+// JS ERRORS:
 gulp.task('jshint', function() {
   return gulp.src('*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
+
+
+// JS TASKS
+var jsFiles = 'client/js/*.js',
+    jsDest = '.';
 
 gulp.task('scripts', function() {
     return gulp.src(jsFiles)
@@ -90,16 +99,17 @@ gulp.task('image', function() {
 });
 
 // JQUERY:
-var jquery = require('gulp-jquery');
-gulp.task('jquery', function () {
-     return gulp.src('./node_modules/jquery/src')
-        .pipe(jquery({
-            flags: ['-deprecated', '-event/alias', '-ajax/script', '-ajax/jsonp', '-exports/global']
-        }))
-    .pipe(gulp.dest('./'));
-    // creates ./public/vendor/jquery.custom.js
-});
+// var jquery = require('gulp-jquery');
+// gulp.task('jquery', function () {
+//      return gulp.src('./node_modules/jquery/src')
+//         .pipe(jquery({
+//             flags: ['-deprecated', '-event/alias', '-ajax/script', '-ajax/jsonp', '-exports/global']
+//         }))
+//     .pipe(gulp.dest('app3'));
+//     // creates ./public/vendor/jquery.custom.js
+// });
 
+// BROWSERSYNC:
 browserSync.init({
     // injects changes instead of browser reload
     injectChanges: true,
