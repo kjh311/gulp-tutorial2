@@ -3,21 +3,21 @@
 * Watches SCSS, LESS, or  STYLUS files and auto compiles to CSS.
 * Watches for changes in HTML, SCSS, LESS, STYLUS, and JS files and auto-reloads the browser.
 * Watches for new images and auto minifies the file size.
-* Minifies CSS file using Gulp-Clean-Css.
-* Finds JS errors using Gulp-Jshint.
-* Concatonates multiple JS files into 1 file using Gulp-Concat.
-* Minifies JS file using Gulp-Jshint.
+* Minifies CSS file.
+* Finds JS errors.
+* Concatonates multiple JS files into 1 file.
+* Minifies JS file.
 
 
 #USES:
 
 * Gulp
 * Browser-Sync
-* Gulp-Ruby-Sass
 * Gulp-Clean-Css
+* Gulp-Ruby-Sass
 * Gulp-Stylus
-* Path
 * Gulp-Less
+* Path
 * Jshint-Stylish
 * Gulp-Jshint
 * Jshint

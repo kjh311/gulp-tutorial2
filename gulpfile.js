@@ -89,6 +89,17 @@ gulp.task('image', function() {
         .pipe(gulp.dest('build/images'))
 });
 
+// JQUERY:
+var jquery = require('gulp-jquery');
+gulp.task('jquery', function () {
+     return gulp.src('./node_modules/jquery/src')
+        .pipe(jquery({
+            flags: ['-deprecated', '-event/alias', '-ajax/script', '-ajax/jsonp', '-exports/global']
+        }))
+    .pipe(gulp.dest('./'));
+    // creates ./public/vendor/jquery.custom.js
+});
+
 browserSync.init({
     // injects changes instead of browser reload
     injectChanges: true,
