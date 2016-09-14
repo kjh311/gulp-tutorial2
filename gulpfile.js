@@ -19,10 +19,9 @@ var jshint        = require('gulp-jshint');
 var concat        = require('gulp-concat');
 var rename        = require('gulp-rename');
 var uglify        = require('gulp-uglify');
-var jquery        = require('jquery');
-var browserify    = require('browserify');
+// var jquery        = require('jquery');
+// var browserify    = require('browserify');
 var imagemin      = require('gulp-imagemin');
-
 
 
 // GENERAL TASKS:
@@ -44,7 +43,7 @@ gulp.task('sass', function(){
     sass('client/stylesheets/scss/*.scss')
         .on('error', sass.logError)
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('client/stylesheets/css'))
+        .pipe(gulp.dest('public/css'))
         // injects changes into browser when change of scss:
         .pipe(browserSync.stream({match: '**/*.css'}));
 });
@@ -56,7 +55,7 @@ gulp.task('less', function() {
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
       .pipe(cleanCSS({compatibility: 'ie8'}))
-      .pipe(gulp.dest('client/stylesheets/css'))
+      .pipe(gulp.dest('public/css'))
       .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
@@ -65,7 +64,7 @@ gulp.task('stylus', function(){
     return gulp.src('client/stylesheets/stylus/*.styl')
         .pipe(stylus())
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('client/stylesheets/css'))
+        .pipe(gulp.dest('public/css'))
         // injects changes into browser when change of stylus:
         .pipe(browserSync.stream({match: '**/*.css'}));
 });
@@ -84,7 +83,7 @@ var jsFiles = 'client/js/*.js',
 
 gulp.task('scripts', function() {
     return gulp.src(jsFiles)
-        .pipe(concat('client/compiledJS/concat.js'))
+        .pipe(concat('client/js/compiledJS/concat.js'))
         .pipe(gulp.dest(jsDest))
         .pipe(rename('app.js'))
         .pipe(uglify())
@@ -92,22 +91,31 @@ gulp.task('scripts', function() {
 });
 
 // COMPRESS IMAGES:
-gulp.task('image', function() {
-    gulp.src('client/images/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('build/images'))
+// gulp.task('image', function() {
+//     gulp.src('client/images/*')
+//         .pipe(imagemin())
+//         .pipe(gulp.dest('public/images'))
+// });
+var imageop = require('gulp-image-optimization');
+
+gulp.task('image', function(cb) {
+    gulp.src(['client/images/**/*.png','client/images/**/*.jpg','client/images/**/*.gif','client/images/**/*.jpeg']).pipe(imageop({
+        optimizationLevel: 5,
+        progressive: true,
+        interlaced: true
+    })).pipe(gulp.dest('public/images')).on('end', cb).on('error', cb);
 });
 
 // JQUERY:
-// var jquery = require('gulp-jquery');
-// gulp.task('jquery', function () {
-//      return gulp.src('./node_modules/jquery/src')
-//         .pipe(jquery({
-//             flags: ['-deprecated', '-event/alias', '-ajax/script', '-ajax/jsonp', '-exports/global']
-//         }))
-//     .pipe(gulp.dest('app3'));
-//     // creates ./public/vendor/jquery.custom.js
-// });
+var jquery = require('gulp-jquery');
+gulp.task('jquery', function () {
+     return gulp.src('./node_modules/jquery/src')
+        .pipe(jquery({
+            flags: ['-deprecated', '-event/alias', '-ajax/script', '-ajax/jsonp', '-exports/global']
+        }))
+    .pipe(gulp.dest('app3'));
+    // creates ./public/vendor/jquery.custom.js
+});
 
 // BROWSERSYNC:
 browserSync.init({

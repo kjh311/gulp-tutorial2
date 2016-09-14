@@ -1,7 +1,7 @@
 // alert('app1!');
 // GRR! CAN'T GET JQUERY TO WORK!!!
 // var $ = require('jquery');
-// $('#button').click(function() {
+// $('button').click(function() {
 //   alert( "button clicked" );
 // });
 
@@ -12,3 +12,5 @@
 // function myFunction() {
 //     document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
 // }
+
+
