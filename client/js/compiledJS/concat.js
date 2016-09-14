@@ -14,5 +14,9 @@
 // }
 
 
+// $( document ).ready(function() {
+    // alert( "ready!" );
+
+// });
 
 // alert('app2');

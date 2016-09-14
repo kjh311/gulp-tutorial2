@@ -7,6 +7,7 @@
 * Finds JS errors.
 * Concatonates multiple JS files into 1 file.
 * Minifies JS file.
+* Compresses Images.
 
 
 #USES:
