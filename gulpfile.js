@@ -27,12 +27,12 @@ var imagemin      = require('gulp-imagemin');
 // GENERAL TASKS:
 // Uncomment for stylus or less
 gulp.task('watch', function(){
-  gulp.watch('client/stylesheets/scss/*.scss', ['sass']);
-  gulp.watch('client/stylesheets/stylus/*.styl', ['stylus']);
-  gulp.watch('client/stylesheets/less/*.less', ['less']);
+  gulp.watch('work_here/stylesheets/scss/*.scss', ['sass']);
+  gulp.watch('work_here/stylesheets/stylus/*.styl', ['stylus']);
+  gulp.watch('work_here/stylesheets/less/*.less', ['less']);
   gulp.watch('*.js', ['jshint']);
-  gulp.watch('client/js/*.js', ['scripts']);
-  gulp.watch('client/images/*', ['image']);
+  gulp.watch('work_here/js/*.js', ['scripts']);
+  gulp.watch('work_here/images/*', ['image']);
   // reloads browser
   gulp.watch("*.html").on("change", reload);
   gulp.watch("*.js").on("change", reload);
@@ -40,7 +40,7 @@ gulp.task('watch', function(){
 
 // SASS
 gulp.task('sass', function(){
-    sass('client/stylesheets/scss/*.scss')
+    sass('work_here/stylesheets/scss/*.scss')
         .on('error', sass.logError)
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('public/css'))
@@ -50,7 +50,7 @@ gulp.task('sass', function(){
 
 // LESS
 gulp.task('less', function() {
-   return gulp.src('client/stylesheets/less/*.less')
+   return gulp.src('work_here/stylesheets/less/*.less')
       .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
@@ -61,7 +61,7 @@ gulp.task('less', function() {
 
 // STYLUS
 gulp.task('stylus', function(){
-    return gulp.src('client/stylesheets/stylus/*.styl')
+    return gulp.src('work_here/stylesheets/stylus/*.styl')
         .pipe(stylus())
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('public/css'))
@@ -78,12 +78,12 @@ gulp.task('jshint', function() {
 
 
 // JS TASKS
-var jsFiles = 'client/js/*.js',
+var jsFiles = 'work_here/js/*.js',
     jsDest = '.';
 
 gulp.task('scripts', function() {
     return gulp.src(jsFiles)
-        .pipe(concat('client/js/compiledJS/concat.js'))
+        .pipe(concat('work_here/js/compiledJS/concat.js'))
         .pipe(gulp.dest(jsDest))
         .pipe(rename('app.js'))
         .pipe(uglify())
@@ -92,22 +92,14 @@ gulp.task('scripts', function() {
 
 // COMPRESS IMAGES:
  gulp.task('image', function() {
-     gulp.src('client/images/*')
+     gulp.src('work_here/images/*')
          .pipe(imagemin({
             progressive: true
           }))
          .pipe(gulp.dest('public/images'))
  });
 
- // var imageop = require('gulp-image-optimization');
 
-// gulp.task('image', function(cb) {
-//     gulp.src(['client/images/**/*.png','client/images/**/*.jpg','client/images/**/*.gif','client/images/**/*.jpeg']).pipe(imageop({
-//         optimizationLevel: 5,
-//         progressive: true,
-//         interlaced: true
-//     })).pipe(gulp.dest('public/images')).on('end', cb).on('error', cb);
-// });
 
 // JQUERY:
 var jquery = require('gulp-jquery');
