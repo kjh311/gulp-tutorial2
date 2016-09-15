@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "bootstrap": "^3.3.7",
     "browser-sync": "^2.14.3",
     "browserify": "^13.1.0",
     "gulp": "^3.9.1",

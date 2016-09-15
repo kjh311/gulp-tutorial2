@@ -7,6 +7,7 @@
 * Concatonates multiple JS files into 1 file.
 * Minifies JS file.
 * Compresses Images.
+* Allows JQUERY
 
 
 #USES:

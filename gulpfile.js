@@ -19,9 +19,10 @@ var jshint        = require('gulp-jshint');
 var concat        = require('gulp-concat');
 var rename        = require('gulp-rename');
 var uglify        = require('gulp-uglify');
-// var jquery        = require('jquery');
+var jquery        = require('jquery');
 // var browserify    = require('browserify');
 var imagemin      = require('gulp-imagemin');
+
 
 
 // GENERAL TASKS:
@@ -32,7 +33,7 @@ gulp.task('watch', function(){
   gulp.watch('work_here/stylesheets/less/*.less', ['less']);
   gulp.watch('*.js', ['jshint']);
   gulp.watch('work_here/js/*.js', ['scripts']);
-  gulp.watch('work_here/images/*', ['image']);
+  // gulp.watch('work_here/images/*', ['image']);
   // reloads browser
   gulp.watch("*.html").on("change", reload);
   gulp.watch("*.js").on("change", reload);
@@ -98,19 +99,6 @@ gulp.task('scripts', function() {
           }))
          .pipe(gulp.dest('public/images'))
  });
-
-
-
-// JQUERY:
-var jquery = require('gulp-jquery');
-gulp.task('jquery', function () {
-     return gulp.src('./node_modules/jquery/src')
-        .pipe(jquery({
-            flags: ['-deprecated', '-event/alias', '-ajax/script', '-ajax/jsonp', '-exports/global']
-        }))
-    .pipe(gulp.dest('app3'));
-    // creates ./public/vendor/jquery.custom.js
-});
 
 // BROWSERSYNC:
 browserSync.init({
