@@ -1,4 +1,4 @@
-#Creating a Personalized Gulpfile for my repetitive tasks.
+#Creating a Personalized Gulpfile for my repetitive tasks, and template for static site..
 
 * Watches SCSS, LESS, or  STYLUS files and auto compiles to CSS.
 * Watches for changes in HTML, SCSS, LESS, STYLUS, and JS files and auto-reloads the browser.
@@ -6,8 +6,10 @@
 * Finds JS errors.
 * Concatonates multiple JS files into 1 file.
 * Minifies JS file.
-* Compresses Images.
 * Allows JQUERY
+* Compresses Images.
+* Bootstrap Ready
+
 
 
 #USES:
@@ -26,3 +28,4 @@
 * Gulp-Rename
 * Gulp-Concat
 * Gulp-Imagemin
+* Bootstrap
